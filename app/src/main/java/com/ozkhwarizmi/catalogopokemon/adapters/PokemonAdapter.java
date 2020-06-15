@@ -1,10 +1,13 @@
 package com.ozkhwarizmi.catalogopokemon.adapters;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import com.ozkhwarizmi.catalogopokemon.R;
 import com.ozkhwarizmi.catalogopokemon.entities.Pokemon;
 
 import java.util.List;
@@ -12,6 +15,11 @@ import java.util.List;
 public class PokemonAdapter extends BaseAdapter {
     private Context context;
     private List<Pokemon> lstPokemon;
+
+    public PokemonAdapter(Context context, List<Pokemon> lstPokemon) {
+        this.context = context;
+        this.lstPokemon = lstPokemon;
+    }
 
     @Override
     public int getCount() {
@@ -30,8 +38,16 @@ public class PokemonAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        View inflater = LayoutInflater.from(context).inflate(R.layout.pokemon_item, parent, false);
 
-        return null;
+        TextView txtNome = inflater.findViewById(R.id.nome);
+
+        //txtNome.setText(lstPokemon.get(position).getName()); OU
+
+        Pokemon pokemon = lstPokemon.get(position);
+        txtNome.setText(pokemon.getName());
+
+        return inflater;
     }
 }
 
