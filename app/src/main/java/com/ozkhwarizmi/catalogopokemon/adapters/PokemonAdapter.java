@@ -1,12 +1,14 @@
 package com.ozkhwarizmi.catalogopokemon.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
+import com.ozkhwarizmi.catalogopokemon.DetailsPokemon;
 import com.ozkhwarizmi.catalogopokemon.R;
 import com.ozkhwarizmi.catalogopokemon.entities.Pokemon;
 
@@ -42,10 +44,19 @@ public class PokemonAdapter extends BaseAdapter {
 
         TextView txtNome = inflater.findViewById(R.id.nome);
 
-        //txtNome.setText(lstPokemon.get(position).getName()); OU
+        /*txtNome.setText(lstPokemon.get(position).getName()); /*OU*/
 
         Pokemon pokemon = lstPokemon.get(position);
         txtNome.setText(pokemon.getName());
+
+        inflater.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent it = new Intent(context, DetailsPokemon.class);
+                it.putExtra("pokemon", pokemon);
+                context.startActivity(it);
+            }
+        });
 
         return inflater;
     }
