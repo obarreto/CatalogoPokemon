@@ -2,8 +2,10 @@ package com.ozkhwarizmi.catalogopokemon.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
+import java.io.Serializable;
+
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Pokemon {
+public class Pokemon implements Serializable {
     private String name;
     private String url;
 
